@@ -66,62 +66,63 @@ class RestaurantTableViewController: UITableViewController {
         //取消动作
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         optionMenu.addAction(cancelAction)
+
         
-//        //加入call动作
-//        let callActioHandler = { (action:UIAlertAction!) -> Void in
-//            let alertMessage = UIAlertController(title: "Service Unavailable", message: "Sorry,the feature is not available yet. Please retry later.", preferredStyle: .alert)
-//            alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-//            self.present(alertMessage, animated: true, completion: nil)
-//        }
-//
-//        let callAction = UIAlertAction(title: "Call" + "123-000-\(indexPath.row)", style: .default, handler: callActioHandler)
-//        optionMenu.addAction(callAction)
-//
-//        //check-in
-//        let checkInAction = UIAlertAction(title: "Check in", style: .default, handler: {
-//            (action:UIAlertAction) -> Void in
-//            let cell = tableView.cellForRow(at: indexPath) as! RestaurantTableViewCell
-//            //普通样式
-////            cell?.accessoryType = .checkmark
-//            //自定义样式
-//            cell.checkMaekImg.image = UIImage(named: "heart-tick")
-//            self.restaurantIsVisted[indexPath.row] = true
-//        })
-//
-//        //check-out
-//        let checkOutAction = UIAlertAction(title: "check out", style: .default, handler: {
-//            (ACTION:UIAlertAction) -> Void in
-//            let cell = tableView.cellForRow(at: indexPath) as! RestaurantTableViewCell;
-//            //普通样式
-////            cell?.accessoryType = .none
-//            //自定义样式
-//            cell.checkMaekImg.image = UIImage()
-//            self.restaurantIsVisted[indexPath.row] = false
-//        })
-//
-//        //判断使用checkIn or checkOut
-//        if restaurantIsVisted[indexPath.row]==false {
-//            optionMenu.addAction(checkInAction)
-//        }else{
-//            optionMenu.addAction(checkOutAction)
-//        }
-//
-//
+        //加入call动作
+        let callActioHandler = { (action:UIAlertAction!) -> Void in
+            let alertMessage = UIAlertController(title: "Service Unavailable", message: "Sorry,the feature is not available yet. Please retry later.", preferredStyle: .alert)
+            alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alertMessage, animated: true, completion: nil)
+        }
+
+        let callAction = UIAlertAction(title: "Call" + "123-000-\(indexPath.row)", style: .default, handler: callActioHandler)
+        optionMenu.addAction(callAction)
+
+        //check-in
+        let checkInAction = UIAlertAction(title: "Check in", style: .default, handler: {
+            (action:UIAlertAction) -> Void in
+            let cell = tableView.cellForRow(at: indexPath) as! RestaurantTableViewCell
+            //普通样式
+//            cell?.accessoryType = .checkmark
+            //自定义样式
+            cell.checkMaekImg.image = UIImage(named: "heart-tick")
+            self.restaurantIsVisted[indexPath.row] = true
+        })
+
+        //check-out
+        let checkOutAction = UIAlertAction(title: "check out", style: .default, handler: {
+            (ACTION:UIAlertAction) -> Void in
+            let cell = tableView.cellForRow(at: indexPath) as! RestaurantTableViewCell;
+            //普通样式
+//            cell?.accessoryType = .none
+            //自定义样式
+            cell.checkMaekImg.image = UIImage()
+            self.restaurantIsVisted[indexPath.row] = false
+        })
+
+        //判断使用checkIn or checkOut
+        if restaurantIsVisted[indexPath.row]==false {
+            optionMenu.addAction(checkInAction)
+        }else{
+            optionMenu.addAction(checkOutAction)
+        }
+
+
         present(optionMenu, animated: true, completion: nil)
-//
-//        //IPAD弹框优化，以防报错
-//        //iPhone弹框popoverPresentationController为nil
-//        //iPad弹框通过popoverPresentationController实现，非nil认为是iPad
-//        if let popoverController = optionMenu.popoverPresentationController{
-//            //配置源视图
-//            if let cell = tableView.cellForRow(at: indexPath){
-//                popoverController.sourceView = cell
-//                popoverController.sourceRect = cell.bounds
-//            }
-//        }
-//
-//        //取消选中
-//        tableView.deselectRow(at: indexPath, animated: false)
+
+        //IPAD弹框优化，以防报错
+        //iPhone弹框popoverPresentationController为nil
+        //iPad弹框通过popoverPresentationController实现，非nil认为是iPad
+        if let popoverController = optionMenu.popoverPresentationController{
+            //配置源视图
+            if let cell = tableView.cellForRow(at: indexPath){
+                popoverController.sourceView = cell
+                popoverController.sourceRect = cell.bounds
+            }
+        }
+
+        //取消选中
+        tableView.deselectRow(at: indexPath, animated: false)
         
     }
     
